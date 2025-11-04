@@ -2,6 +2,12 @@
 
 export default function CrashPage() {
   if (typeof window !== "undefined") {
+    try {
+      (window as any)?.flutter_inappwebview?.callHandler?.("crashDetection");
+    } catch (error) {
+      console.warn("Failed to notify Flutter bridge before crash.", error);
+    }
+
     throw new Error("Intentional client crash for monitoring validation.");
   }
 
