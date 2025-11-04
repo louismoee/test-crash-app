@@ -16,6 +16,8 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
         message: error?.message ?? "Unknown client error",
         digest: error?.digest,
       });
+
+      console.log("Crash detected and notified Flutter bridge about the crash.");
     } catch (bridgeError) {
       console.warn(
         "Failed to notify Flutter bridge about the crash.",
